@@ -32,28 +32,28 @@ resource "aws_internet_gateway" "tf_aws_ig" {
   }
 }
 
-resource "aws_route_table" "awstf5_rt" {
-  vpc_id = aws_vpc.awstf5_vpc.id
+resource "aws_route_table" "tf_aws_rt2a" {
+  vpc_id = aws_vpc.tf_aws_vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.awstf5_ig.id
+    gateway_id = aws_internet_gateway.tf_aws_ig.id
   }
 
   tags = {
-    Name = "awstf5_rt"
+    Name = "tf_aws_rt2a"
   }
 }
 
-resource "aws_route_table_association" "awstf5_rt_assoc" {
-  subnet_id      = aws_subnet.awstf5_sn.id
-  route_table_id = aws_route_table.awstf5_rt.id
+resource "aws_route_table_association" "tf_aws_rt2a" {
+  subnet_id      = aws_subnet.tf_aws_sn2a.id
+  route_table_id = aws_route_table.tf_aws_rt2a.id
 }
 
-resource "aws_security_group" "awstf5_SG_ssh" {
+resource "aws_security_group" "tf_aws_sg22" {
   name        = "allow-all-ssh"
   description = "Allow all inbound traffic from port 22"
-  vpc_id      = aws_vpc.awstf5_vpc.id
+  vpc_id      = aws_vpc.tf_aws_vpc.id
 
   ingress {
     description = "SSH from VPC"
@@ -71,7 +71,7 @@ resource "aws_security_group" "awstf5_SG_ssh" {
   }
 
   tags = {
-    Name = "awstf5_SG_allow_ssh"
+    Name = "tf_aws_sg_allowSSH"
   }
 }
 
