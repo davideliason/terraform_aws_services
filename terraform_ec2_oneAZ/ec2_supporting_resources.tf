@@ -89,10 +89,10 @@ output "security_group_id" {
   value = aws_security_group.project1_sg_port22.id
 }
 
-#output "instance_id" {
-#  value = aws_instance.prjo.id
-#}
+output "instance_id" {
+  value = aws_instance.Project1_ec2.id
+}
 
-#output "instance_public_ip" {
-# value = aws_instance.example_instance.public_ip
-#}
+output "instance_public_ip" {
+  value = aws_instance.Project1_ec2.public_ip
+}
