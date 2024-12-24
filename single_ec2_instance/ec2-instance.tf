@@ -5,7 +5,7 @@ resource "aws_instance" "tf_aws_ec2_instance" {
   subnet_id     = aws_subnet.tf_aws_sn2a.id
   key_name      = aws_key_pair.ec2_key.id_rsa
 
-  security_groups = [aws_security_group.ec2_sg.tf_aws_sg2]
+  security_groups = [aws_security_group.ec2_sg.tf_aws_sg22]
 
   tags = {
     Name = "tf_aws_ec2_instance"
