@@ -24,11 +24,11 @@ resource "aws_subnet" "tf_aws_sn2a" {
 }
 
 # IG
-resource "aws_internet_gateway" "awstf5_ig" {
-  vpc_id = aws_vpc.awstf5_vpc.id
+resource "aws_internet_gateway" "tf_aws_ig" {
+  vpc_id = aws_vpc.tf_aws_vpc.id
 
   tags = {
-    Name = "awstf5_ig"
+    Name = "tf_aws_ig"
   }
 }
 
