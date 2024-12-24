@@ -13,13 +13,13 @@ resource "aws_vpc" "tf_aws_vpc" {
   }
 }
 
-resource "aws_subnet" "awstf5_sn" {
-  vpc_id            = aws_vpc.awstf5_vpc.id
-  cidr_block        = cidrsubnet(aws_vpc.awstf5_vpc.cidr_block, 3, 1)
+resource "aws_subnet" "tf_aws_sn2a" {
+  vpc_id            = aws_vpc.tf_aws_vpc.id
+  cidr_block        = cidrsubnet(aws_vpc.tf_aws_vpc.cidr_block, 3, 1)
   availability_zone = "us-west-2a"
 
   tags = {
-    Name = "awstf5_sn"
+    Name = "tf_aws_sn_uswest2a"
   }
 }
 
