@@ -3,57 +3,57 @@
 # cidr_block = "10.0.0.0/16"
 #}
 
-resource "aws_vpc" "tf_aws_vpc" {
+resource "aws_vpc" "project1_vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
   enable_dns_support   = true
 
   tags = {
-    Name = "tf_aws_vpc"
+    Name = "Project1VPC"
   }
 }
 
-resource "aws_subnet" "tf_aws_subnet_2a" {
-  vpc_id            = aws_vpc.tf_aws_vpc.id
-  cidr_block        = cidrsubnet(aws_vpc.tf_aws_vpc.cidr_block, 3, 1)
+resource "aws_subnet" "project1_subnet_us_west_2a" {
+  vpc_id            = aws_vpc.project1_vpc.id
+  cidr_block        = cidrsubnet(aws_vpc.project1_vpc, 3, 1)
   availability_zone = "us-west-2a"
 
   tags = {
-    Name = "tf_aws_sn_uswest2a"
+    Name = "Project1SubnetUSWest2a"
   }
 }
 
 # IG
-resource "aws_internet_gateway" "tf_aws_ig" {
-  vpc_id = aws_vpc.tf_aws_vpc.id
+resource "aws_internet_gateway" "project1_ig" {
+  vpc_id = aws_vpc.project1_vpc.id
 
   tags = {
-    Name = "tf_aws_ig"
+    Name = "project1VPC"
   }
 }
 
-resource "aws_route_table" "tf_aws_rt2a" {
-  vpc_id = aws_vpc.tf_aws_vpc.id
+resource "aws_route_table" "project1_rt_2a" {
+  vpc_id = aws_vpc.project1_vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.tf_aws_ig.id
+    gateway_id = aws_internet_gateway.project1_ig.id
   }
 
   tags = {
-    Name = "tf_aws_rt2a"
+    Name = "Project1RT2a"
   }
 }
 
-resource "aws_route_table_association" "tf_aws_rt2a" {
-  subnet_id      = aws_subnet.tf_aws_subnet_2a.id
-  route_table_id = aws_route_table.tf_aws_rt2a.id
+resource "aws_route_table_association" "project1_rt_2a_association" {
+  subnet_id      = aws_subnet.project1_subnet_us_west_2a.id
+  route_table_id = aws_route_table.project1_rt_2a.id
 }
 
-resource "aws_security_group" "tf_aws_sg_port22" {
-  name        = "tf_aws_sg_port22"
+resource "aws_security_group" "project1_sg_port22" {
+  name        = "project1_sg_port22"
   description = "Allow all inbound traffic from port 22"
-  vpc_id      = aws_vpc.tf_aws_vpc.id
+  vpc_id      = aws_vpc.project1_vpc.id
 
   ingress {
     description = "SSH from VPC"
@@ -71,7 +71,27 @@ resource "aws_security_group" "tf_aws_sg_port22" {
   }
 
   tags = {
-    Name = "tf_aws_sg_allow_SSH"
+    Name = "project1_sg_port22"
   }
 }
 
+# Outputs
+output "vpc_id" {
+  value = aws_vpc.project1_vpc.id
+}
+
+output "subnet_id" {
+  value = aws_subnet.project1_subnet_us_west_2a.id
+}
+
+output "security_group_id" {
+  value = aws_security_group.project1_sg_port22.id
+}
+
+#output "instance_id" {
+#  value = aws_instance.prjo.id
+#}
+
+#output "instance_public_ip" {
+# value = aws_instance.example_instance.public_ip
+#}
