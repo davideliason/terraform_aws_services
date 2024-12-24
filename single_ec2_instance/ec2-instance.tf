@@ -1,11 +1,11 @@
 # EC2 Instance
 resource "aws_instance" "tf_aws_ec2_instance" {
-  ami           = "ami-07d9cf938edb0739b" # Replace with your desired AMI ID
-  instance_type = "t2.micro"
-  subnet_id     = aws_subnet.tf_aws_sn2a.id
-  key_name      = aws_key_pair.ec2_key.id_rsa
+  ami                    = "ami-07d9cf938edb0739b" # Replace with your desired AMI ID
+  instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.tf_aws_sn2a.id
+  key_name               = "id_rsa"
+  vpc_security_group_ids = ["tf_aws_sg22"]
 
-  security_groups = [aws_security_group.ec2_sg.tf_aws_sg22]
 
   tags = {
     Name = "tf_aws_ec2_instance"

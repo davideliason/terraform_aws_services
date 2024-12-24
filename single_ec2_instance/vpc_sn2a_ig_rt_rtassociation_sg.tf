@@ -76,4 +76,3 @@ resource "aws_security_group" "tf_aws_sg22" {
 }
 
 
-
