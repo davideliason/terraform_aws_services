@@ -97,3 +97,13 @@ output "instance_id" {
 output "instance_public_ip" {
   value = aws_instance.Project1_ec2.public_ip
 }
+
+terraform {
+  backend "s3" {
+    bucket         = "david-eliason-my-terraform-state-bucket"
+    key            = "terraform.tfstate"
+    region         = "us-west-2"
+    encrypt        = true
+    dynamodb_table = "terraform-lock-table" # Optional for state locking
+  }
+}
