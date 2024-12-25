@@ -26,4 +26,5 @@ module "ec2" {
   security_group_id = module.security_group.security_group_id
   tags              = { Environment = "dev" }
   key_name          = "best_dir"
+  allowed_ssh_cidrs = ["0.0.0.0/0"]
 }
