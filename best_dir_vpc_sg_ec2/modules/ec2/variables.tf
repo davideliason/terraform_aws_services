@@ -2,10 +2,17 @@ variable "ami" {
   description = "The Amazon Machine Image (AMI) ID to use for the EC2 instance."
   type        = string
 }
+
 variable "instance_type" {
   description = "The EC2 instance type."
   type        = string
   default     = "t2.micro"
+}
+
+variable "instance_name" {
+  description = "The name tag for the EC2 instance."
+  type        = string
+  default     = "terraform-ec2"
 }
 variable "subnet_id" {}
 variable "security_group_id" {}
