@@ -1,6 +1,9 @@
+# declare the variables the module will accept
+
 variable "ami" {
   description = "The Amazon Machine Image (AMI) ID to use for the EC2 instance."
   type        = string
+  default     = "ami-07d9cf938edb0739b"
 }
 
 variable "instance_type" {
