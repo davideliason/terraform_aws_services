@@ -14,17 +14,6 @@ provider "aws" {
   profile                  = "vscodeaws"
   region                   = var.region
 }
-# placeholder
-resource "aws_vpc" "project1_vpc" {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_hostnames = true
-  enable_dns_support   = true
-
-  tags = {
-    Name = "Project1VPC"
-  }
-}
-# end placeholder
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
@@ -38,6 +27,9 @@ module "vpc" {
 
   enable_nat_gateway = true
   single_nat_gateway = true
+
+  enable_dns_hostnames = true
+  enable_dns_support   = true
 
   tags = {
     Environment = "dev"
