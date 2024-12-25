@@ -20,9 +20,10 @@ module "security_group" {
 
 module "ec2" {
   source            = "./modules/ec2"
-  ami               = "ami-07d9cf938edb0739b" # Replace with a valid AMI
+  ami               = "ami-07d9cf938edb0739b"
   instance_type     = "t2.micro"
   subnet_id         = module.vpc.public_subnets[0]
   security_group_id = module.security_group.security_group_id
   tags              = { Environment = "dev" }
+  key_name          = "best_dir"
 }
