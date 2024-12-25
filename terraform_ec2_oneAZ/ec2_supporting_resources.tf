@@ -14,9 +14,10 @@ resource "aws_vpc" "project1_vpc" {
 }
 #
 resource "aws_subnet" "project1_subnet_us_west_2a" {
-  vpc_id            = aws_vpc.project1_vpc.id
-  cidr_block        = cidrsubnet(aws_vpc.project1_vpc.cidr_block, 3, 1)
-  availability_zone = "us-west-2a"
+  vpc_id                  = aws_vpc.project1_vpc.id
+  cidr_block              = cidrsubnet(aws_vpc.project1_vpc.cidr_block, 3, 1)
+  availability_zone       = "us-west-2a"
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "Project1SubnetUSWest2a"
