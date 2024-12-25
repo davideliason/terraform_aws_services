@@ -14,7 +14,12 @@ variable "instance_name" {
   type        = string
   default     = "terraform-ec2"
 }
-variable "subnet_id" {}
+
+variable "subnet_id" {
+  description = "The ID of the subnet to launch the instance in."
+  type        = string
+}
+
 variable "security_group_id" {}
 
 variable "allowed_ssh_cidrs" {
